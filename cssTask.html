@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Layout Practice Page</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .demo-item {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .demo-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* CSS Grid Practice Section */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .grid-advanced {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .grid-item-1 { grid-area: 1 / 1 / 2 / 4; background: #ff6b6b; }
+        .grid-item-2 { grid-area: 2 / 1 / 3 / 2; background: #4ecdc4; }
+        .grid-item-3 { grid-area: 2 / 2 / 4 / 3; background: #45b7d1; }
+        .grid-item-4 { grid-area: 2 / 3 / 3 / 4; background: #f9ca24; }
+        .grid-item-5 { grid-area: 3 / 1 / 4 / 2; background: #6c5ce7; }
+        .grid-item-6 { grid-area: 3 / 3 / 4 / 4; background: #a55eea; }
+
+        /* Flexbox Practice Section */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .flex-item {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .flex-directions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Position Practice Section */
+        .position-container {
+            position: relative;
+            height: 300px;
+            background: #e9ecef;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .position-absolute {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+        }
+
+        .position-fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #dc3545;
+            z-index: 1000;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .position-sticky {
+            position: sticky;
+            top: 0;
+            background: #17a2b8;
+            z-index: 100;
+        }
+
+        /* Transform and Animation Practice */
+        .transform-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .transform-item {
+            width: 100px;
+            height: 100px;
+            background: #6c5ce7;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rotate:hover { transform: rotate(45deg); }
+        .scale:hover { transform: scale(1.2); }
+        .skew:hover { transform: skew(15deg, 15deg); }
+        .translate:hover { transform: translateX(20px); }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        .animate {
+            animation: bounce 2s infinite;
+        }
+
+        /* Table Practice Section */
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .styled-table thead {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .styled-table tbody tr:hover {
+            background-color: #f5f5f5;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+
+        .styled-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table-responsive {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .table-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        /* Form and Input Practice Section */
+        .form-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .styled-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .styled-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .styled-input:hover {
+            border-color: #cbd5e0;
+        }
+
+        .input-error {
+            border-color: #e53e3e !important;
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1) !important;
+        }
+
+        .input-success {
+            border-color: #38a169 !important;
+            box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.1) !important;
+        }
+
+        .styled-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .styled-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .styled-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #667eea;
+            cursor: pointer;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .styled-radio {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+            cursor: pointer;
+        }
+
+        .styled-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .styled-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .styled-button:active {
+            transform: translateY(0);
+        }
+
+        .button-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .button-secondary:hover {
+            background: #cbd5e0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .textarea-container {
+            position: relative;
+        }
+
+        .styled-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .styled-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background: #555;
+            transform: scale(1.05);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .section {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .section-title {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+
+        body.dark-mode .float-container,
+        body.dark-mode .flex-directions {
+            background: #2c3e50;
+        }
+
+        body.dark-mode .position-container {
+            background: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    <div class="position-fixed">Fixed</div>
+
+    <div class="container">
+        <header class="section">
+            <h1 style="text-align: center; color: #667eea; font-size: 2.5rem; margin-bottom: 10px;">
+                CSS Layout Practice Page
+            </h1>
+            <p style="text-align: center; font-size: 1.1rem; color: #666;">
+                Practice CSS Grid, Flexbox, Positioning, Media Queries, and More!
+            </p>
+        </header>
+
+        <!-- CSS Grid Practice -->
+        <section class="section">
+            <h2 class="section-title">🔲 CSS Grid Practice</h2>
+            <h3>Basic Grid (Auto-fit & Minmax)</h3>
+            <div class="grid-container">
+                <div class="demo-item">Grid Item 1</div>
+                <div class="demo-item">Grid Item 2</div>
+                <div class="demo-item">Grid Item 3</div>
+                <div class="demo-item">Grid Item 4</div>
+                <div class="demo-item">Grid Item 5</div>
+                <div class="demo-item">Grid Item 6</div>
+            </div>
+            
+            <h3>Advanced Grid Layout</h3>
+            <div class="grid-advanced">
+                <div class="demo-item grid-item-1">Header (spans 3 columns)</div>
+                <div class="demo-item grid-item-2">Sidebar</div>
+                <div class="demo-item grid-item-3">Main Content</div>
+                <div class="demo-item grid-item-4">Ads</div>
+                <div class="demo-item grid-item-5">Footer Left</div>
+                <div class="demo-item grid-item-6">Footer Right</div>
+            </div>
+        </section>
+
+        <!-- Flexbox Practice -->
+        <section class="section">
+            <h2 class="section-title">📦 Flexbox Practice</h2>
+            <h3>Flexible Items</h3>
+            <div class="flex-container">
+                <div class="demo-item flex-item">Flex Item 1</div>
+                <div class="demo-item flex-item">Flex Item 2</div>
+                <div class="demo-item flex-item">Flex Item 3</div>
+            </div>
+            
+            <h3>Flex Direction & Alignment</h3>
+            <div class="flex-directions">
+                <div class="demo-item">Left</div>
+                <div class="demo-item">Center</div>
+                <div class="demo-item">Right</div>
+            </div>
+            
+            <div class="flex-column">
+                <div class="demo-item">Column Item 1</div>
+                <div class="demo-item">Column Item 2</div>
+                <div class="demo-item">Column Item 3</div>
+            </div>
+        </section>
+
+        <!-- Position Practice -->
+        <section class="section">
+            <h2 class="section-title">📍 Position Practice</h2>
+            <div class="position-sticky demo-item">Sticky Header (scroll to see effect)</div>
+            <div class="position-container">
+                <div class="demo-item">Relative Container</div>
+                <div class="demo-item position-absolute">Absolute Position</div>
+            </div>
+            <p>Notice the fixed position element in the bottom-right corner!</p>
+        </section>
+
+        <!-- Table Practice -->
+        <section class="section">
+            <h2 class="section-title">📊 Table Practice</h2>
+            <h3>Styled Data Table</h3>
+            <div class="table-container">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>Frontend Developer</td>
+                            <td>Engineering</td>
+                            <td>$75,000</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>UX Designer</td>
+                            <td>Design</td>
+                            <td>$68,000</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Mike Johnson</td>
+                            <td>Backend Developer</td>
+                            <td>Engineering</td>
+                            <td>$80,000</td>
+                            <td>On Leave</td>
+                        </tr>
+                        <tr>
+                            <td>Sarah Wilson</td>
+                            <td>Product Manager</td>
+                            <td>Product</td>
+                            <td>$90,000</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Responsive Card Layout (Alternative to Tables)</h3>
+            <div class="table-responsive">
+                <div class="table-card">
+                    <h4>John Doe</h4>
+                    <p><strong>Position:</strong> Frontend Developer</p>
+                    <p><strong>Department:</strong> Engineering</p>
+                    <p><strong>Salary:</strong> $75,000</p>
+                </div>
+                <div class="table-card">
+                    <h4>Jane Smith</h4>
+                    <p><strong>Position:</strong> UX Designer</p>
+                    <p><strong>Department:</strong> Design</p>
+                    <p><strong>Salary:</strong> $68,000</p>
+                </div>
+                <div class="table-card">
+                    <h4>Mike Johnson</h4>
+                    <p><strong>Position:</strong> Backend Developer</p>
+                    <p><strong>Department:</strong> Engineering</p>
+                    <p><strong>Salary:</strong> $80,000</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form and Input Practice -->
+        <section class="section">
+            <h2 class="section-title">📝 Form & Input Practice</h2>
+            <div class="form-container">
+                <div class="form-grid">
+                    <div>
+                        <h3>Text Inputs</h3>
+                        <div class="input-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="styled-input" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="styled-input input-success" placeholder="your@email.com" value="john@example.com">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="styled-input input-error" placeholder="Enter password">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="styled-input" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3>Select & Options</h3>
+                        <div class="input-group">
+                            <label for="country">Country</label>
+                            <select id="country" class="styled-select">
+                                <option value="">Select a country</option>
+                                <option value="us">United States</option>
+                                <option value="ca">Canada</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="de">Germany</option>
+                                <option value="fr">France</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Preferred Contact Method</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="email-contact" name="contact" class="styled-radio" value="email">
+                                    <label for="email-contact">Email</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="phone-contact" name="contact" class="styled-radio" value="phone">
+                                    <label for="phone-contact">Phone</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="sms-contact" name="contact" class="styled-radio" value="sms">
+                                    <label for="sms-contact">SMS</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="newsletter" class="styled-checkbox">
+                                <label for="newsletter">Subscribe to newsletter</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" class="styled-checkbox">
+                                <label for="terms">I agree to the terms and conditions</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="message">Message</label>
+                    <div class="textarea-container">
+                        <textarea id="message" class="styled-textarea" placeholder="Enter your message here..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" class="styled-input">
+                </div>
+                
+                <div class="input-group">
+                    <label for="range">Range Slider</label>
+                    <input type="range" id="range" min="0" max="100" value="50" style="width: 100%; accent-color: #667eea;">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const button = document.querySelector('.dark-mode-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                button.textContent = '☀️ Light Mode';
+            } else {
+                button.textContent = '🌙 Dark Mode';
+            }
+        }
+
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            const demoItems = document.querySelectorAll('.demo-item');
+            demoItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
